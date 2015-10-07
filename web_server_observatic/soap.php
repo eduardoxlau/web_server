@@ -15,7 +15,8 @@ $server->register('Categories',array('provedor' => 'xsd:int'),array('return' => 
 $namespace);
 $server->register('Tematicas',array('categoria_id' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
-
+$server->register('Indicadores',array('tematica_id' => 'xsd:int'),array('return' => 'xsd:string'),
+$namespace);
 
 function Categories($provedor){ 
 	
@@ -40,7 +41,20 @@ function Tematicas($categoria_id){
 
 
 } 
+function Indicadores($tematica_id){ 
+	if($tematica_id > 0){
 
+		return  functions::indicadores($tematica_id);
+	}else{// todos los indicadores de observatic
+		return  functions::indicador();
+
+	}
+	
+
+	
+	
+
+} 
 
 
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

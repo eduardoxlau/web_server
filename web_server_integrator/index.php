@@ -13,7 +13,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="index.php">Categorias</a></li>
         <li><a href="tematicas.php">Tematicas</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+        <li><a href="indicador.php">Indicadores</a></li>
       </ul>
     </div>
   </nav>

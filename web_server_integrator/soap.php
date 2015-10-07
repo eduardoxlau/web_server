@@ -14,6 +14,8 @@ $server->register('Categories',array('provedor' => 'xsd:int'),array('return' => 
 $namespace);
 $server->register('Tematicas',array('categoria_id' => 'xsd:int','provedor' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
+$server->register('Indicadores',array('tematica_id' => 'xsd:int','provedor' => 'xsd:int'),array('return' => 'xsd:string'),
+$namespace);
 // Provedor 1 Tangara
 // Provedor 2 Observatic
 
@@ -68,11 +70,29 @@ function Tematicas($categoria_id,$provedor){
 		return $resultado;
 
 	}
+}
+function Indicadores($tematica_id,$provedor){ 
+	if ($provedor==2){//si provedor es para observatic
+
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
+		$resultado=$cliente->call('Indicadores',array('tematica_id'=>$tematica_id));
+		return $resultado;
 	
-		 
+	
+
+	}
+	else if($provedor==1){ //si provedor es para Tangara
 
 
-} 
+	}
+	else//all provedores
+	{
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
+		$resultado=$cliente->call('Indicadores',array('tematica_id'=>0));
+		return $resultado;
+
+	}
+}  
 
 
 

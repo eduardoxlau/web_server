@@ -13,7 +13,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="index.php">Categorias</a></li>
         <li><a href="tematicas.php">Tematicas</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+        <li><a href="indicador.php">Indicadores</a></li>
       </ul>
     </div>
   </nav>
@@ -43,8 +43,8 @@
 	echo '<div class="col s12">';
 	echo '<ul class="collapsible popout" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i><span>'.$result[$i]->{'name'}.'</span><span class="right">'.$result[$i]->{'categoria'}.'</span></div>
-      <div class="collapsible-body"><p>'.$result[$i]->{'descripcion'}.'</p></div>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i><span>'.$result[$i]->{'name'}.'</span></div>
+      <div class="collapsible-body"><p><a HREF="indicador.php?tematica_id='.$result[$i]->{'id'}.'&provedor='.$result[$i]->{'provedor'}.'">'.$result[$i]->{'descripcion'}.'</a></p></div>
     </li>
     </ul>
     </div>';
@@ -52,6 +52,7 @@
 		$i++;
 	}
 	echo '</div>';
+
 
 	?>
 
