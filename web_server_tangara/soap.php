@@ -11,19 +11,18 @@ $server->schemaTargetNamespace=$namespace;
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////// registrer functions webserver nusoap////////////////////
+$server->register('Municipios',array('provedor' => 'xsd:int'),array('return' => 'xsd:string'),
+$namespace);
 $server->register('Categories',array('provedor' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
 $server->register('Tematicas',array('categoria_id' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
-$server->register('Indicadores',array('tematica_id' => 'xsd:int'),array('return' => 'xsd:string'),
-$namespace);
 
-function Categories($provedor){ 
-	
-
+function Municipios(){ 
+	return  functions::municipios();
+} 
+function Categories(){ 
 	return  functions::categories();
-	
-
 } 
 function Tematicas($categoria_id){
 	
@@ -35,25 +34,6 @@ function Tematicas($categoria_id){
 
 		return  functions::tematicas();
 	}
-	
-	
-		 
-
-
-} 
-function Indicadores($tematica_id){ 
-	if($tematica_id > 0){
-
-		return  functions::indicadores($tematica_id);
-	}else{// todos los indicadores de observatic
-		return  functions::indicador();
-
-	}
-	
-
-	
-	
-
 } 
 
 
