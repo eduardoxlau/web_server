@@ -37,7 +37,7 @@ class functions{
 		{ 
 		    $id=$row['id_dimension'];
 		    $descripcion=$row['Descripcion'];
-		    $category[] = array('id'=> $id, 'nombre'=>$descripcion, 'descripcion'=>$descripcion,'provedor'=>1);
+		    $category[] = array('id'=> $id, 'name'=>$descripcion, 'descripcion'=>$descripcion,'provedor'=>1);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
@@ -59,7 +59,7 @@ class functions{
 		    $id=$row['id_tematica'];
 		    $descripcion=$row['Descripcion'];
 		    $categoria=$row['fk_Dimension'];
-		    $tematicas[] = array('id'=> $id,'nombre'=>$descripcion,  'descripcion'=>$descripcion,'categoria'=>$categoria, 'provedor'=>1);
+		    $tematicas[] = array('id'=> $id,'name'=>$descripcion,  'descripcion'=>$descripcion,'categoria'=>$categoria, 'provedor'=>1);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
@@ -81,7 +81,7 @@ class functions{
 		    $id=$row['id_tematica'];
 		    $descripcion=$row['Descripcion'];
 		    $categoria=$row['fk_Dimension'];
-		    $tematicas[] = array('id'=> $id,'nombre'=>$descripcion,  'descripcion'=>$descripcion,'categoria'=>$categoria, 'provedor'=>1);
+		    $tematicas[] = array('id'=> $id,'name'=>$descripcion,  'descripcion'=>$descripcion,'categoria'=>$categoria, 'provedor'=>1);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");

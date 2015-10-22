@@ -24,9 +24,13 @@
 		Categorias
 	</p>
 	<?
+	//********************************************
+	//*************** TANGARA******************
+	//********************************************
+	echo '<h4>Tangara</h4>';
 	require_once('lib/nusoap.php'); 
 	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
-	$resultado = $cliente->call('Categories');
+	$resultado = $cliente->call('Categories', array('provedor' => 1));
 	//echo ($resultado);
 	$result= json_decode($resultado);
 	$i=0;
@@ -58,6 +62,44 @@
 	}
 	echo '</div>';
 
+	//********************************************
+	//*************** OBSERVATIC******************
+	//********************************************
+	echo '<h4>ObservaTic</h4>';
+	require_once('lib/nusoap.php'); 
+	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
+	$resultado = $cliente->call('Categories', array('provedor' => 2));
+	//echo ($resultado);
+	$result= json_decode($resultado);
+	$i=0;
+	echo '<div class="row">';
+	foreach ($result as &$valor) {
+	echo '<div class="col s4">';
+		  
+	   
+	   echo '<div class="card">
+		    <div class="card-image waves-effect waves-block waves-light">
+		      <img class="activator" src="images/office.jpg">
+		    </div>
+		    <div class="card-content">
+		      <span class="card-title activator grey-text text-darken-4">';
+		      echo ($result[$i]->{'name'});
+		      echo'<i class="material-icons right">more_vert</i></span>
+		      <p><a href="tematicas.php?categoria_id='.$result[$i]->{'id'}.'&provedor='.$result[$i]->{'provedor'}.'">Ver tematicas</a></p>
+		    </div>
+		    <div class="card-reveal">
+		      <span class="card-title grey-text text-darken-4">Descripcion<i class="material-icons right">close</i></span>
+		      <p>';
+		      echo ($result[$i]->{'descripcion'});
+		      echo'</p>
+		    </div>
+		  </div>
+	  </div>';
+
+		$i++;
+	}
+	echo '</div>';
+	//*********************************************
 	?>
 
 </div>

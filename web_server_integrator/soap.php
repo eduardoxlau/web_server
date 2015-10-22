@@ -30,7 +30,9 @@ function Categories($provedor){
 
 	}
 	else if($provedor==1){ //si provedor es para Tangara
-
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_tangara/soap.php?wsdl',true);
+		$resultado=$cliente->call('Categories');
+		return $resultado;
 
 	}
 	else//all provedores
@@ -38,6 +40,7 @@ function Categories($provedor){
 		$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
 		$resultado=$cliente->call('Categories');
 		return $resultado;
+
 
 	}
 } 
@@ -50,22 +53,22 @@ function Tematicas($categoria_id,$provedor){
 			$resultado=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
 			
 			return $resultado;
-
-		}else{//si provedor es para observatic no tiene categoria
-
-			$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
-			$resultado=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
-			return $resultado;
 		}
 	}
 	else if ($provedor==1) //si provedor es para Tangara
 	{
-		
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_tangara/soap.php?wsdl',true);
+		$resultado=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
+			
+		return $resultado;
 
 	}
 	else{ //all provedores
 		$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
-		$resultado=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
+		$resultado1=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_tangara/soap.php?wsdl',true);
+		$resultado2=$cliente->call('Tematicas',array('categoria_id'=>$categoria_id));
+		$resultado =json_encode(array_merge(json_decode($resultado1, true),json_decode($resultado2, true)));
 		
 		return $resultado;
 

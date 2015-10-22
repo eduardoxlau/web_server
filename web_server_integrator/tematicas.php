@@ -26,6 +26,7 @@
 		Tematicas
 	</p>
 	<?
+
 	require_once('lib/nusoap.php'); 
 	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
 	 if (isset($_GET['categoria_id']))
