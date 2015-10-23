@@ -27,7 +27,7 @@
 	//********************************************
 	//*************** TANGARA******************
 	//********************************************
-	echo '<h4>Tangara</h4>';
+	//echo '<h4>Tangara</h4>';
 	require_once('lib/nusoap.php'); 
 	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
 	$resultado = $cliente->call('Categories', array('provedor' => 1));
@@ -65,7 +65,7 @@
 	//********************************************
 	//*************** OBSERVATIC******************
 	//********************************************
-	echo '<h4>ObservaTic</h4>';
+	//echo '<h4>ObservaTic</h4>';
 	require_once('lib/nusoap.php'); 
 	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
 	$resultado = $cliente->call('Categories', array('provedor' => 2));

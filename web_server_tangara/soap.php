@@ -17,6 +17,8 @@ $server->register('Categories',array('provedor' => 'xsd:int'),array('return' => 
 $namespace);
 $server->register('Tematicas',array('categoria_id' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
+$server->register('Indicadores',array('municipio_id' => 'xsd:int'),array('return' => 'xsd:string'),
+$namespace);
 
 function Municipios(){ 
 	return  functions::municipios();
@@ -33,6 +35,15 @@ function Tematicas($categoria_id){
 	}else{
 
 		return  functions::tematicas();
+	}
+} 
+function Indicadores($municipio_id){
+	if ($municipio_id>0){
+
+		return  functions::tematicasxcategoria($categoria_id);
+	}else{
+
+		return  functions::indicadores();
 	}
 } 
 

@@ -16,6 +16,7 @@ $server->register('Tematicas',array('categoria_id' => 'xsd:int','provedor' => 'x
 $namespace);
 $server->register('Indicadores',array('tematica_id' => 'xsd:int','provedor' => 'xsd:int'),array('return' => 'xsd:string'),
 $namespace);
+
 // Provedor 1 Tangara
 // Provedor 2 Observatic
 
@@ -38,7 +39,10 @@ function Categories($provedor){
 	else//all provedores
 	{
 		$cliente = new nusoap_client('http://localhost/web_server/web_server_observatic/soap.php?wsdl',true);
-		$resultado=$cliente->call('Categories');
+		$resultado1=$cliente->call('Categories');
+		$cliente = new nusoap_client('http://localhost/web_server/web_server_tangara/soap.php?wsdl',true);
+		$resultado2=$cliente->call('Categories');
+		$resultado =json_encode(array_merge(json_decode($resultado1, true),json_decode($resultado2, true)));
 		return $resultado;
 
 

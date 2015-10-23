@@ -69,7 +69,7 @@ class functions{
 	}
 	public static function tematicasxcategoria($categoria){
 		include('config.php'); 
-		$sql = "SELECT id_tematica,Descripcion,fk_Dimension FROM tematica WHERE  fk_Dimension=$categoria";
+		$sql = "SELECT id_tematica as id,Descripcion,fk_Dimension FROM tematica WHERE  fk_Dimension=$categoria";
 		mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
 		 
 		if(!$result = mysqli_query($conexion, $sql)) die();
@@ -78,7 +78,7 @@ class functions{
 		 
 		while($row = mysqli_fetch_array($result)) 
 		{ 
-		    $id=$row['id_tematica'];
+		    $id=$row['id'];
 		    $descripcion=$row['Descripcion'];
 		    $categoria=$row['fk_Dimension'];
 		    $tematicas[] = array('id'=> $id,'name'=>$descripcion,  'descripcion'=>$descripcion,'categoria'=>$categoria, 'provedor'=>1);
@@ -89,5 +89,36 @@ class functions{
 		$json_string = json_encode($tematicas);
 		return $json_string;
 	}
+	public static function indicadores(){
+		include('config.php'); 
+		$sql = "SELECT datos.id_datos as id ,variables.descripcion as descripcion ,tipo_dato as medida,variables.descripcion as objetivo,datos.id_variable as variable,'null' as etiqueta,valor
+		FROM datos,variables where datos.id_variable=variables.id_variable";
+		mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
+		 
+		if(!$result = mysqli_query($conexion, $sql)) die();
+		 
+		$indicador = array(); //creamos un array
+		 
+		while($row = mysqli_fetch_array($result)) 
+		{ 
+		    $id=$row['id'];
+		    $descripcion=$row['descripcion'];
+		    $medida=$row['medida'];
+		    $objetivo=$row['objetivo'];
+		    $variable=$row['variable'];
+		    $etiqueta=$row['etiqueta'];
+		    $valor=$row['valor'];
+		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'provedor'=>1);
+		}
+		$close = mysqli_close($conexion) 
+		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
+
+		$json_string = json_encode($indicador);
+		return $json_string;
+	}
+
+
+
+	
 }
 ?>
