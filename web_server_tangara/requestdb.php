@@ -91,8 +91,8 @@ class functions{
 	}
 	public static function indicadores(){
 		include('config.php'); 
-		$sql = "SELECT datos.id_datos as id ,variables.descripcion as descripcion ,tipo_dato as medida,variables.descripcion as objetivo,datos.id_variable as variable,'null' as etiqueta,valor
-		FROM datos,variables where datos.id_variable=variables.id_variable";
+		$sql = "SELECT datos.id_datos as id ,indicadores.nombre as descripcion ,tipo_dato as medida,indicadores.descripcion as objetivo,datos.id_variable as variable,variables.descripcion as etiqueta,valor
+		FROM datos,variables,indicadores where datos.id_variable=variables.id_variable and indicadores.id_indicadores=variables.id_indicador";
 		mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
 		 
 		if(!$result = mysqli_query($conexion, $sql)) die();

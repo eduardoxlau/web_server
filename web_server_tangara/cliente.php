@@ -25,7 +25,7 @@ echo $Tematicas;
 echo '<h1> Tematicas X categoria </h1> ';
 echo $Tematicasxcategoria;
 echo '<h1> indicadores  </h1> ';
-echo $indicadores;
+var_dump($indicadores) 
 
 
 ?>
