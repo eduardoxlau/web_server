@@ -20,37 +20,31 @@
 </head>
 <body>
 <div class="container ">
-	<h4>Indicadores Json</h4>
-	<br>
-	<br>
-	<br>
-   
+	<h4> tematica :	<?echo $_GET['name']?></h4>
 	<?
-	if (isset($_GET['tematica_id']))
-    {
-      
-          require_once('lib/nusoap.php'); 
-          $cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
-          $resultado = $cliente->call('Indicadores',array('tematica_id'=>$_GET['tematica_id'],'provedor'=>$_GET['provedor'],'municipio_id'=>$_GET['municipio_id']));
-          echo $resultado;
+	require_once('lib/nusoap.php'); 
+	$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
+	$resultado = $cliente->call('Municipios');
+	
+	$result= json_decode($resultado);
+	$i=0;
 
-    	
-    }else{
-    	require_once('lib/nusoap.php');
-		$cliente= new nusoap_client('http://localhost/web_server/web_server_integrator/soap.php?wsdl',true);
-		$resultado = $cliente->call('Indicadores',array('tematica_id'=>0,'provedor'=>0));
-		echo $resultado;
-    }
-	
-	
-	
-    ?>
-    <br>
-	<br>
-	<br>
-
+	echo '<div class="collection">';
+	foreach ($result as &$valor) {
+		echo '<a href="http://localhost/web_server/web_server_integrator/indicador.php?tematica_id='.$_GET['tematica_id'].'&provedor=1&municipio_id='.$result[$i]->{'id'}.'" 
+				class="collection-item">'.$result[$i]->{'nombre'}.'</a>';
+		$i++;
+	}
+	?>
+	</div>
 </div>
-
+<script type="text/javascript">
+ $(document).ready(function(){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  });
+</script>
 </body>
 </html>
 

@@ -91,8 +91,8 @@ class functions{
 	}
 	public static function indicadores(){
 		include('config.php'); 
-		$sql = "SELECT datos.id_datos as id ,indicadores.nombre as descripcion ,tipo_dato as medida,indicadores.descripcion as objetivo,datos.id_variable as variable,variables.descripcion as etiqueta,valor
-		FROM datos,variables,indicadores where datos.id_variable=variables.id_variable and indicadores.id_indicadores=variables.id_indicador";
+		$sql = "SELECT datos.id_datos as id ,indicadores.nombre as descripcion ,tipo_dato as medida,indicadores.descripcion as objetivo,datos.id_variable as variable,variables.descripcion as etiqueta,valor,datos.id_municipio as municipio
+		FROM datos,variables,indicadores where datos.id_variable=variables.id_variable and indicadores.id_indicadores=variables.id_indicador limit 10000";
 		mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
 		 
 		if(!$result = mysqli_query($conexion, $sql)) die();
@@ -108,7 +108,37 @@ class functions{
 		    $variable=$row['variable'];
 		    $etiqueta=$row['etiqueta'];
 		    $valor=$row['valor'];
-		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'provedor'=>1);
+		    $municipio=$row['municipio'];
+		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'id_municipio'=>$municipio,'provedor'=>1);
+		}
+		$close = mysqli_close($conexion) 
+		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
+
+		$json_string = json_encode($indicador);
+		return $json_string;
+	}
+	public static function indicadoresxmunicipioxtematica($municipio_id,$tematica_id){
+		include('config.php'); 
+		$sql = "SELECT datos.id_datos as id ,indicadores.nombre as descripcion ,tipo_dato as medida,indicadores.descripcion as objetivo,datos.id_variable as variable,variables.descripcion as etiqueta,valor,datos.id_municipio as municipio
+		FROM datos,variables,indicadores where datos.id_variable=variables.id_variable and indicadores.id_indicadores=variables.id_indicador and
+        datos.id_municipio=$municipio_id and indicadores.fk_tematica=$tematica_id limit 10000";
+		mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
+		 
+		if(!$result = mysqli_query($conexion, $sql)) die();
+		 
+		$indicador = array(); //creamos un array
+		 
+		while($row = mysqli_fetch_array($result)) 
+		{ 
+		    $id=$row['id'];
+		    $descripcion=$row['descripcion'];
+		    $medida=$row['medida'];
+		    $objetivo=$row['objetivo'];
+		    $variable=$row['variable'];
+		    $etiqueta=$row['etiqueta'];
+		    $valor=$row['valor'];
+		    $municipio=$row['municipio'];
+		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'id_municipio'=>$municipio,'provedor'=>1);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");

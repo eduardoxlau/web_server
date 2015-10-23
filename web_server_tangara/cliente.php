@@ -11,7 +11,8 @@ $Tematicas=$cliente->call('Tematicas');
 #tematicas  X categorias
 $Tematicasxcategoria=$cliente->call('Tematicas',array('categoria_id'=>1));
 #all indicadores
-$indicadores=$cliente->call('Indicadores');
+//$indicadores=$cliente->call('Indicadores');
+$IndicadoresxMunicipioxTematica=$cliente->call('IndicadoresxMunicipioxTematica',array('municipio_id'=>41,'tematica_id'=>1));
 
 
 echo '<h1> municipios </h1> ';
@@ -24,8 +25,10 @@ echo $Tematicas;
 
 echo '<h1> Tematicas X categoria </h1> ';
 echo $Tematicasxcategoria;
-echo '<h1> indicadores  </h1> ';
-var_dump($indicadores) 
+// echo '<h1> indicadores  </h1> ';
+// var_dump($indicadores) 
+echo '<h1> IndicadoresxMunicipioxTematica  </h1> ';
+var_dump($IndicadoresxMunicipioxTematica) 
 
 
 ?>

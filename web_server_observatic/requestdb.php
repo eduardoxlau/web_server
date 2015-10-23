@@ -106,7 +106,7 @@ class functions{
 		    $variable=$row['variable'];
 		    $etiqueta=$row['etiqueta'];
 		    $valor=$row['valor'];
-		    $indicadores[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'provedor'=>2);
+		    $indicadores[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'id_municipio'=>43,'provedor'=>2);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
@@ -145,7 +145,7 @@ class functions{
 		    $variable=$row['variable'];
 		    $etiqueta=$row['etiqueta'];
 		    $valor=$row['valor'];
-		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'provedor'=>2);
+		    $indicador[] = array('id'=> $id, 'descripcion'=> $descripcion,'medida'=>$medida,'objetivo'=>$objetivo, 'variable'=> $variable,'etiqueta'=>$etiqueta,'valor'=>$valor,'id_municipio'=>43,'provedor'=>2);
 		}
 		$close = mysqli_close($conexion) 
 		or die("Ha sucedido un error inexperado en la desconexion de la base de datos");

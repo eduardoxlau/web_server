@@ -45,7 +45,22 @@
 	echo '<ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i><span>'.$result[$i]->{'name'}.'</span></div>
-      <div class="collapsible-body"><p><a HREF="indicador.php?tematica_id='.$result[$i]->{'id'}.'&provedor='.$result[$i]->{'provedor'}.'">'.$result[$i]->{'descripcion'}.'</a></p></div>
+      <div class="collapsible-body"><p>';
+      if ($result[$i]->{'provedor'}==2){
+        echo'<a HREF="indicador.php?tematica_id='.$result[$i]->{'id'}.'&provedor='.$result[$i]->{'provedor'}.'">'.$result[$i]->{'descripcion'}.'</a>';
+
+      }
+      else{
+
+        echo'<a HREF="municipios.php?tematica_id='.$result[$i]->{'id'}.'&name='.$result[$i]->{'name'}.'&provedor='.$result[$i]->{'provedor'}.'">'.$result[$i]->{'descripcion'}.'</a>';
+
+
+      }
+
+      
+      echo'
+
+      </p></div>
     </li>
     </ul>
     </div>';
